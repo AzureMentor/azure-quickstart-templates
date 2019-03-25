@@ -65,8 +65,7 @@
 			"type": "string",
 			"metadata": {
 				"description": "Public VM IP dns label prefix"
-			},
-			
+			}
 		},
 		"Loadbalancer": {
 			"type": "string",
@@ -152,9 +151,7 @@
 				"id": "[variables('lbPoolID')]"
 			}
 		],
-		"lbaddrpool0": [
-			
-		],
+		"lbaddrpool0": [],
 		"lbaddrpool": "[if(greater(length(variables('lbPoolID')),0),variables('lbaddrpool1'),variables('lbaddrpool0'))]",
 		"WindowsStorageProfile": {
 			"imageReference": {
@@ -177,9 +174,7 @@
 			"osDisk": {
 				"createOption": "fromImage"
 			},
-			"dataDisks": [
-				
-			]
+			"dataDisks": []
 		},
 		"linuxConfiguration": {
 			"disablePasswordAuthentication": "false"
@@ -279,7 +274,7 @@
 											"backendAddressPool": {
 												"id": "[resourceId('Microsoft.Network/loadBalancers/backendAddressPools',variables('lbName'),variables('lbPoolName'))]"
 											},
-											"protocol": "tcp",
+											"protocol": "Tcp",
 											"frontendPort": 9453,
 											"backendPort": 9453,
 											"enableFloatingIP": false,
@@ -317,9 +312,7 @@
 				"name": "Standard_LRS"
 			},
 			"kind": "Storage",
-			"properties": {
-				
-			}
+			"properties": {}
 		},
 		{
 			"type": "Microsoft.Network/networkSecurityGroups",
@@ -445,7 +438,7 @@
 			],
 			"zones": "[split(string(add(mod(copyIndex(),3),1)), ',')]",
 			"identity": {
-				"type": "systemAssigned"
+				"type": "SystemAssigned"
 			},
 			"properties": {
 				"hardwareProfile": {
